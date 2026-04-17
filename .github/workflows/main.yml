@@ -22,8 +22,7 @@ jobs:
             nvm use 20
             echo "Deploying Node.js app..."
             cd ~/vps-ps/vps-prectice/backend || exit 1
-            git fetch origin
-            git reset --hard origin/main
+            git pull origin main || exit 1
             npm install --production || exit 1
             pm2 restart backend-ad || pm2 start index.js --name backend-ad
             pm2 save
