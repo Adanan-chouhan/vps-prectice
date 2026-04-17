@@ -9,7 +9,6 @@ jobs:
 deploy:
 runs-on: ubuntu-latest
 
-```
 steps:
   - name: Checkout Repo
     uses: actions/checkout@v3
@@ -35,12 +34,11 @@ steps:
         git fetch origin
         git reset --hard origin/main
 
-        npm install || exit 1
+        npm install --production || exit 1
 
-        # Restart app (no build step needed)
-        pm2 restart backend-ad || pm2 start index.js --name backend-ad
+        # Use ecosystem file (recommended)
+        pm2 restart ecosystem.config.js || pm2 start ecosystem.config.js
 
         pm2 save
 
         echo "✅ Deployment finished successfully"
-```
