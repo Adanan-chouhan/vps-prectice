@@ -12,6 +12,7 @@ const registerUser = async (req, res) => {
 
     try {
         const { name, email, password } = req.body;
+        console.log("BODY:", req.body);
 
         const existingUser = await findUserByEmail(email);
 
@@ -36,6 +37,7 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
+        console.log("BODY:", req.body);
 
         const user = await findUserByEmail(email);
 
@@ -52,6 +54,9 @@ const loginUser = async (req, res) => {
                 message: "Invalid password"
             });
         }
+
+
+        console.log("Login success");
         const accessToken = generateAccessToken(user);
         const refreshToken = genrateRefreshToken(user);
 
@@ -191,6 +196,8 @@ const createProduct = async (req, res) => {
     const product = repo.create(req.body);
     const saved = await repo.save(product);
 
+    console.log("Product saved:", saved);
+
     res.json(saved);
 };
 
@@ -206,6 +213,7 @@ const getProducts = async (req, res) => {
         order: { id: "DESC" }
     });
 
+    console.log("Products retrieved:", products);
     res.json(products);
 };
 
@@ -222,6 +230,7 @@ const deleteProduct = async (req, res) => {
     const repo = AppDataSource.getRepository("Product");
 
     await repo.delete(req.params.id);
+    console.log("Product deleted:", req.params.id);
 
     res.json({ message: "Deleted" });
 };
@@ -248,6 +257,7 @@ const updateProduct = async (req, res) => {
     const updated = await repo.findOne({
         where: { id: parseInt(req.params.id) }
     });
+    console.log("Product updated:", updated);
 
     res.json(updated);
 };

@@ -29,8 +29,8 @@ const app = express();
 
 // app.use(cors());
 app.use(cors({
-    origin: "http://localhost:3000", // frontend URL
-    credentials: true
+    origin: "*", // frontend URL
+    // credentials: true
 }));
 app.use(express.json());
 app.use(cookieParser());
@@ -42,8 +42,8 @@ AppDataSource.initialize()
     .then(() => {
         console.log("DB Connected ✅");
 
-        app.listen(5000, () => {
-            console.log('Server is running on port 5000 🚀');
+        app.listen(9001, () => {
+            console.log('Server is running on port 9001 🚀');
         });
     })
     .catch((err) => {
