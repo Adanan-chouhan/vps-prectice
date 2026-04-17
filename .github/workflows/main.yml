@@ -21,10 +21,10 @@ jobs:
             nvm install 20
             nvm use 20
             echo "Deploying Node.js app..."
-            cd ~/your-project-folder || exit 1
+            cd ~/vps-ps/vps-prectice/backend || exit 1
             git fetch origin
             git reset --hard origin/main
             npm install --production || exit 1
-            pm2 restart backend-ad || pm2 start src/server.js --name backend-ad
+            pm2 restart backend-ad || pm2 start index.js --name backend-ad
             pm2 save
             echo "Deployment finished successfully ✅"
