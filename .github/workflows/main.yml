@@ -29,7 +29,7 @@ jobs:
 
             echo "Deploying NestJS app..."
 
-            cd ~/vps-ps/vps-prectice/backend/PRACTICE-CI || exit 1
+            cd ~/vps-ps/vps-prectice/backend || exit 1
 
             # 🔥 REMOVE git pull
             git fetch origin
@@ -38,7 +38,7 @@ jobs:
             npm install || exit 1
             npm run build || exit 1
 
-            pm2 restart PRACTICE-CI || pm2 start dist/main.js --name PRACTICE-CI
+            pm2 restart backend-ad || pm2 start dist/main.js --name backend-ad
             pm2 save
 
             echo "Deployment finished successfully ✅"
