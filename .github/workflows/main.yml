@@ -38,7 +38,8 @@ jobs:
             npm install || exit 1
             npm run build || exit 1
 
-            pm2 restart backend-ad || pm2 start dist/main.js --name backend-ad
+            pm2 restart backend-ad || pm2 start  src/server.js --name backend-ad
+            
             pm2 save
 
             echo "Deployment finished successfully ✅"
