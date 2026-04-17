@@ -17,3 +17,4 @@ const genrateRefreshToken = (user) => {
 };
 
 module.exports = { generateAccessToken, genrateRefreshToken };
+
